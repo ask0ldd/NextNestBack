@@ -13,12 +13,11 @@ export class AuthService {
     
     async signIn(username: string, pass: string): Promise<{ access_token: string }> {
 
-        console.log("sign in service")
-
         const user = this.usersService.findOne(username)
 
-        // check password
-        if (user?.password !== pass) {
+        if(!user?.password) throw new Error("User has not password")
+
+        if (!this.comparePasswords(pass, user.password)) {
             throw new UnauthorizedException()
         }
 
@@ -29,7 +28,7 @@ export class AuthService {
         }
     }
 
-    async comparePasswords(plainPassword: string, hashedPassword: string): Promise<boolean> {
-        return await bcrypt.compare(plainPassword, hashedPassword);
+    comparePasswords(plainPassword: string, hashedPassword: string): boolean {
+        return bcrypt.compareSync(plainPassword, hashedPassword);
     }
 }
