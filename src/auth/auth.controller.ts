@@ -32,7 +32,7 @@ export class AuthController {
 
     @UseGuards(AuthGuard)
     @Get('profile')
-    getProfile(@Request() req : {user : string}) : User | undefined { // @Request() req : {user: string} set by middleware
+    getProfile(@Request() req : {user : string}) : User | undefined { // @Request() req : {user: string} set by middleware / guard
         const userId = req.user
 
         if (!userId) {
