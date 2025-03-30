@@ -12,20 +12,16 @@ const SALT_ROUNDS = 10;
 @Injectable()
 export class UsersService {
 
-    async hashPassword(password: string): Promise<string> {
-        return await bcrypt.hash(password, SALT_ROUNDS)
-    }
-
     private readonly users = [
         {
             userId: 1,
             username: 'john',
-            password: 'changeme',
+            password: bcrypt.hashSync('changeme', SALT_ROUNDS),
         },
         {
             userId: 2,
             username: 'maria',
-            password: 'guess',
+            password: bcrypt.hashSync('guess', SALT_ROUNDS),
         },
     ]
     
