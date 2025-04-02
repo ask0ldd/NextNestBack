@@ -8,7 +8,7 @@ async function bootstrap() {
         methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
         allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
         credentials: true, // Allow cookies or credentials
-    });
+    })
     await app.listen(process.env.PORT ?? 4000);
 }
 bootstrap();

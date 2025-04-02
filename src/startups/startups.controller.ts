@@ -1,5 +1,5 @@
 import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
-import { IStartup } from 'src/constants/startups';
+import { IStartup } from '../constants/startups';
 import { StartupsService } from './startups.service';
 
 @Controller('startups')

@@ -82,8 +82,6 @@ export const startups : IStartup[] =
   }
 ]
 
-export default startups
-
 export interface IStartup{
     "id" : number,
     "companyName": string,
