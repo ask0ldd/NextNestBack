@@ -1,13 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import startups, { IStartup } from 'src/constants/startups';
+import { Inject, Injectable } from '@nestjs/common';
+import { IStartup } from '../constants/startups';
 
 @Injectable()
 export class StartupsService {
+
+    constructor(
+        @Inject('STARTUPS_DATA') private readonly startups: IStartup[],
+    ) {}
+
     findAll(): IStartup[] {
-        return startups
+        return this.startups
     }
 
     findOne(id : number) : IStartup | undefined {
-        return startups.find(startup => startup.id == id)
+        return this.startups.find(startup => startup.id == id)
     }
 }
