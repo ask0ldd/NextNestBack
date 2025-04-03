@@ -37,4 +37,8 @@ describe('AuthService', () => {
         expect(decodedToken.username).toBe("john")
         expect(decodedToken.sub).toBe(1)
     })
+
+    it('Compare passwords', () => {
+        expect(service.comparePasswords("changeme", users[0].password)).toBeTruthy()
+    })
 });
