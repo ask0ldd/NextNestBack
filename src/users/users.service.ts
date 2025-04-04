@@ -1,35 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { User } from '../constants/users';
 
-/*export type User = {
-    userId : number
-    username : string
-    password : string
-}
-
-const SALT_ROUNDS = 10;*/
-
 @Injectable()
 export class UsersService {
 
     constructor(
-        @Inject('USERS_DATA') private readonly users: User[],
+        @Inject('USERS_DATA') private readonly users: User[], // [!] injecting constants
     ) {}
-
-    /*private readonly users = [
-        {
-            userId: 1,
-            username: 'john',
-            password: bcrypt.hashSync('changeme', SALT_ROUNDS),
-        },
-        {
-            userId: 2,
-            username: 'maria',
-            password: bcrypt.hashSync('guess', SALT_ROUNDS),
-        },
-    ]*/
     
-    findOne(username: string): User | undefined {
+    findByUsername(username: string): User | undefined {
         return this.users.find(user => user.username === username)
+    }
+
+    findByEmail(email : `${string}@${string}.${string}`){
+        return this.users.find(user => user.email === email)
     }
 }

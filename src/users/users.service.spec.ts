@@ -21,8 +21,8 @@ describe('UsersService', () => {
     });
 
     it('should be retrieve the expected user when findone is called with an existing username', () => {
-        expect(service.findOne("user1")?.userId).toBe(mockUsers[0].userId)
-        expect(service.findOne("user2")?.userId).toBe(mockUsers[1].userId)
+        expect(service.findByUsername("user1")?.userId).toBe(mockUsers[0].userId)
+        expect(service.findByUsername("user2")?.userId).toBe(mockUsers[1].userId)
         /*expect(service.findOne("john")?.username).toBe("john")
         expect(service.findOne("maria")?.username).toBe("maria")*/
     })
