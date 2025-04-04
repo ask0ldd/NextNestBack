@@ -40,7 +40,7 @@ export class AuthController {
             throw new Error('User not found in request')
         }
 
-        return this.usersService.findOne(userId)
+        return this.usersService.findByUsername(userId)
     }
 
     @UseGuards(AuthGuard)
