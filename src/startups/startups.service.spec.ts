@@ -24,4 +24,8 @@ describe('StartupService', () => {
   it('should be mockstartup 1', () => {
     expect(service.findOne(1)).toBe(mockStartups[0])
   })
+
+  it('should be mockstartup 1', () => {
+    expect(service.findAll()).toBe(mockStartups)
+  })
 });

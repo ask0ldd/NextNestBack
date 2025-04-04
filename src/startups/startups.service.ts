@@ -5,7 +5,7 @@ import { IStartup } from '../constants/startups';
 export class StartupsService {
 
     constructor(
-        @Inject('STARTUPS_DATA') private readonly startups: IStartup[],
+        @Inject('STARTUPS_DATA') private readonly startups: IStartup[],  // [!] injecting constants
     ) {}
 
     findAll(): IStartup[] {
