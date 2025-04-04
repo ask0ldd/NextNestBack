@@ -29,16 +29,22 @@ describe('AuthService', () => {
         expect(service).toBeDefined();
     });
 
-    it('Sign In return an access token with the expected values', async () => {
+    it('should return the a token with the expected value when passing known credentials to signIn', async () => {
         expect((await service.signIn(users[0].username, "changeme")).access_token).toBeDefined()
         const token = (await service.signIn(users[0].username, "changeme")).access_token
-        const decodedToken = jwtDecode<{admin : boolean, username : string, sub : number}>(token)
+        const decodedToken = jwtDecode<{admin : boolean, username : string, sub : number, iss : string}>(token)
         expect(decodedToken.admin).toBeFalsy()
         expect(decodedToken.username).toBe("john")
         expect(decodedToken.sub).toBe(1)
     })
 
-    it('Compare passwords', () => {
+    it('should return true when plain password related to hashed password passed to comparePasswords', () => {
         expect(service.comparePasswords("changeme", users[0].password)).toBeTruthy()
+        expect(service.comparePasswords("guess", users[1].password)).toBeTruthy()
+    })
+
+    it('should return false when plain password not related to hashed password passed to comparePasswords', () => {
+        expect(service.comparePasswords("zzzzzzzzz", users[0].password)).toBeFalsy()
+        expect(service.comparePasswords("zzzzzzzzz", users[1].password)).toBeFalsy()
     })
 });
