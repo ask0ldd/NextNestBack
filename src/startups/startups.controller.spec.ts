@@ -24,10 +24,17 @@ describe('StartupsController', () => {
         expect(startupsController).toBeDefined();
     });
 
-    it('it should call startupsService.findOne and get MockData Inc. data', () => {
+    it('should call startupsService.findOne and return MockData Inc. data', () => {
         const spiedOnService = jest.spyOn(startupsService, 'findOne').mockImplementation(() => mockStartups[0])
         expect(spiedOnService).toHaveBeenCalledTimes(0)
         expect(startupsController.getStartup("0")).toBe(mockStartups[0])
+        expect(spiedOnService).toHaveBeenCalledTimes(1)
+    })
+
+    it('should call startupsService.findOne and return MockData Inc. data', () => {
+        const spiedOnService = jest.spyOn(startupsService, 'findAll').mockImplementation(() => mockStartups)
+        expect(spiedOnService).toHaveBeenCalledTimes(0)
+        expect(startupsController.getStartups()).toBe(mockStartups)
         expect(spiedOnService).toHaveBeenCalledTimes(1)
     })
 });
