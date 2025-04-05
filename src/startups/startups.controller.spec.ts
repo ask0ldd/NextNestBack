@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { StartupsController } from './startups.controller';
 import { StartupsService } from './startups.service';
 import { mockStartups } from '../mocks/mockStartups';
+import { NotFoundException } from '@nestjs/common';
 
 describe('StartupsController', () => {
     let startupsController: StartupsController;
@@ -28,6 +29,13 @@ describe('StartupsController', () => {
         const spiedOnService = jest.spyOn(startupsService, 'findOne').mockImplementation(() => mockStartups[0])
         expect(spiedOnService).toHaveBeenCalledTimes(0)
         expect(startupsController.getStartup("0")).toBe(mockStartups[0])
+        expect(spiedOnService).toHaveBeenCalledTimes(1)
+    })
+
+    it('should throw a NotFoundException when startupsService.findOne ask for a non existing startup', () => {
+        const spiedOnService = jest.spyOn(startupsService, 'findOne').mockReturnValueOnce(undefined)
+        expect(spiedOnService).toHaveBeenCalledTimes(0)
+        expect(() => startupsController.getStartup("0")).toThrow(NotFoundException)
         expect(spiedOnService).toHaveBeenCalledTimes(1)
     })
 
