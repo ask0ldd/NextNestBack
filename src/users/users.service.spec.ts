@@ -20,10 +20,14 @@ describe('UsersService', () => {
         expect(service).toBeDefined();
     });
 
-    it('should be retrieve the expected user when findone is called with an existing username', () => {
+    it('should retrieve the expected user when findone is called with an existing username', () => {
         expect(service.findByUsername("user1")?.userId).toBe(mockUsers[0].userId)
         expect(service.findByUsername("user2")?.userId).toBe(mockUsers[1].userId)
         /*expect(service.findOne("john")?.username).toBe("john")
         expect(service.findOne("maria")?.username).toBe("maria")*/
+    })
+
+    it('should return undefined when no user with the selected username is found', () => {
+        expect(service.findByUsername("unknown")?.userId).toBeUndefined()
     })
 });
