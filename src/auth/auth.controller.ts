@@ -1,5 +1,5 @@
-
 import {
+    BadRequestException,
   Body,
   Controller,
   Get,
@@ -25,7 +25,8 @@ export class AuthController {
         const { username, password } = signInDto
         
         if (!username || !password) {
-            throw new Error('Username and password are required')
+            // will respond with a 400 Bad Request
+            throw new BadRequestException('Username and password are required')
         }
         
         return this.authService.signIn(username, password)

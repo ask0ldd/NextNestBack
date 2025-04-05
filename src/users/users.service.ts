@@ -12,7 +12,7 @@ export class UsersService {
         return this.users.find(user => user.username === username)
     }
 
-    findByEmail(email : `${string}@${string}.${string}`){
+    findByEmail(email : `${string}@${string}.${string}`): User | undefined{
         return this.users.find(user => user.email === email)
     }
 }
