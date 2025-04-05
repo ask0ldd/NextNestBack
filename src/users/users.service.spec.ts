@@ -28,6 +28,10 @@ describe('UsersService', () => {
     })
 
     it('should return undefined when no user with the selected username is found', () => {
-        expect(service.findByUsername("unknown")?.userId).toBeUndefined()
+        expect(service.findByUsername("unknown")).toBeUndefined()
+    })
+
+    it('should return undefined when no user with the selected username is found', () => {
+        expect(service.findByEmail("unknown@unknown.com")).toBeUndefined()
     })
 });
