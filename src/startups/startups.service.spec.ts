@@ -21,11 +21,15 @@ describe('StartupService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should be mockstartup 1', () => {
+  it('should return the expected mockStartup when calling findOne with a valid id', () => {
     expect(service.findOne(1)).toBe(mockStartups[0])
   })
 
-  it('should be mockstartup 1', () => {
+  it('should return undefined when calling findOne with an invalid id', () => {
+    expect(service.findOne(999)).toBeUndefined()
+  })
+
+  it('should return mockstartups when calling findAll', () => {
     expect(service.findAll()).toBe(mockStartups)
   })
 });
